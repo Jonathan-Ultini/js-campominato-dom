@@ -35,7 +35,7 @@ function startGame(gridSize) {
 }
 
 function updateScore() {
-  scoreDisplay.textContent = `Punteggio: ${score}`;
+  scoreDisplay.innerHTML = `Punteggio: ${score}`;
 }
 
 function createGridCells(gridSize) {
@@ -44,20 +44,21 @@ function createGridCells(gridSize) {
   for (let i = 1; i <= totalCells; i++) {
     const cell = document.createElement('div');
     cell.classList.add('grid-item');
-    cell.textContent = i;
+    cell.innerHTML = i;
 
     cell.addEventListener('click', () => {
       if (gameOver) return;
 
       if (bombNumbers.includes(i)) {
         cell.classList.add('bomb');
-        console.log("partita finita");
+        endGame(false);
       } else {
         if (!cell.classList.contains('clicked')) {
           cell.classList.add('clicked');
           score++;
           updateScore();
           if (score === maxScore) {
+            endGame(true);
           }
         }
       }
@@ -79,3 +80,20 @@ function generateBombs(maxNumber) {
   return bombNumbers;
 }
 
+function endGame(victory) {
+  gameOver = true;
+  if (victory) {
+    messageDisplay.innerHTML = `Hai vinto! Punteggio finale: ${score}`;
+  } else {
+    messageDisplay.innerHTML = `Hai perso! Punteggio finale: ${score}`;
+
+    // Colorare tutte le celle bomba
+    const cells = document.querySelectorAll('.grid-item');
+    for (let i = 0; i < cells.length; i++) {
+      const cell = cells[i];
+      if (bombNumbers.includes(parseInt(cell.innerHTML))) {
+        cell.classList.add('bomb');
+      }
+    }
+  }
+}
