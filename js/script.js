@@ -8,6 +8,7 @@ const messageDisplay = document.getElementById('message');
 let score = 0;
 let maxScore;
 let gameOver = false;
+let bombNumbers = [];
 
 playButton.addEventListener('click', () => {
   const gridSize = parseInt(difficultySelect.value);
@@ -25,6 +26,9 @@ function startGame(gridSize) {
 
   // Display initial score
   updateScore();
+
+  // Generate bomb numbers
+  bombNumbers = generateBombs(gridSize * gridSize);
 
   // Create grid cells
   createGridCells(gridSize);
@@ -55,3 +59,16 @@ function createGridCells(gridSize) {
     gridContainer.appendChild(cell);
   }
 }
+
+function generateBombs(maxNumber) {
+  let bombNumbers = [];
+  while (bombNumbers.length < 16) {
+    const randomNumber = Math.floor(Math.random() * maxNumber) + 1;
+    if (!bombNumbers.includes(randomNumber)) {
+      bombNumbers.push(randomNumber);
+    }
+  }
+  console.log('Numeri bomba:', bombNumbers);
+  return bombNumbers;
+}
+
