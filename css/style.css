@@ -40,16 +40,14 @@ header .difficulty-container select {
   padding: 5px;
 }
 
-.controls {
-  margin-bottom: 20px;
-}
-
 .grid {
   display: grid;
   gap: 5px;
   width: 80vh;
   height: 80vh;
   margin-top: 40px;
+  --num-columns: 10;
+  grid-template-columns: repeat(var(--num-columns), 1fr);
 }
 
 .grid-item {
@@ -61,23 +59,11 @@ header .difficulty-container select {
   font-size: 20px;
   font-weight: bold;
   cursor: pointer;
-  aspect-ratio: 1;
-}
-
-.grid-10 {
-  grid-template-columns: repeat(10, 1fr);
-}
-
-.grid-9 {
-  grid-template-columns: repeat(9, 1fr);
-}
-
-.grid-7 {
-  grid-template-columns: repeat(7, 1fr);
 }
 
 .grid-item.clicked {
   background-color: #87CEEB;
+  cursor: not-allowed;
 }
 
 .btn {
