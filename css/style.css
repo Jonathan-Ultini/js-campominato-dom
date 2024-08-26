@@ -112,3 +112,15 @@ header .difficulty-container select {
   width: 100%;
   height: 100%;
 }
+
+
+#score {
+  font-size: 18px;
+  font-weight: bold;
+}
+
+#message {
+  font-size: 18px;
+  font-weight: bold;
+  color: red;
+}
