@@ -49,10 +49,17 @@ function createGridCells(gridSize) {
     cell.addEventListener('click', () => {
       if (gameOver) return;
 
-      if (!cell.classList.contains('clicked')) {
-        cell.classList.add('clicked');
-        score++;
-        updateScore();
+      if (bombNumbers.includes(i)) {
+        cell.classList.add('bomb');
+        console.log("partita finita");
+      } else {
+        if (!cell.classList.contains('clicked')) {
+          cell.classList.add('clicked');
+          score++;
+          updateScore();
+          if (score === maxScore) {
+          }
+        }
       }
     });
 
